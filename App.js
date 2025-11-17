@@ -21,6 +21,7 @@ class App extends Component {
     ];
 
     this.quebrarBiscoito = this.quebrarBiscoito.bind(this);
+    this.reiniciarBiscoito = this.reiniciarBiscoito.bind(this);
   }
 
   quebrarBiscoito() {
@@ -28,6 +29,13 @@ class App extends Component {
     this.setState({
       img: require("./src/biscoitoAberto.png"),
       textoFrase: `"${this.frases[idx]}"`,
+    });
+  }
+
+  reiniciarBiscoito() {
+    this.setState({
+      img: require("./src/biscoito.png"),
+      textoFrase: "",
     });
   }
 
@@ -40,6 +48,14 @@ class App extends Component {
         <TouchableOpacity style={styles.botao} onPress={this.quebrarBiscoito}>
           <View style={styles.btnArea}>
             <Text style={styles.textoBotao}>Quebrar Biscoito</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.botao, styles.botaoSec]}
+          onPress={this.reiniciarBiscoito}
+        >
+          <View style={[styles.btnArea, styles.btnAreaSec]}>
+            <Text style={styles.textoBotao}>Reiniciar</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -62,11 +78,17 @@ const styles = StyleSheet.create({
   botao: {
     marginTop: 20,
   },
+  botaoSec: {
+    marginTop: 10,
+  },
   btnArea: {
     backgroundColor: "#538530",
     paddingVertical: 10,
     paddingHorizontal: 40,
     borderRadius: 25,
+  },
+  btnAreaSec: {
+    backgroundColor: "#7A7A7A",
   },
   textoBotao: {
     color: "#FFF",
